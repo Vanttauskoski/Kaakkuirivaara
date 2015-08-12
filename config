@@ -1,0 +1,112 @@
+set $mod Mod4
+
+font pango:Noto Sans 12
+
+client.focused #cecece #cecece #3e3e3e #2d84df
+client.focused_inactive #3e3e3e #3e3e3e #cecece #2d84df
+client.unfocused #3e3e3e #3e3e3e #cecece #2d84df
+client.urgent #2d84df #2d84df #3e3e3e #cecece
+client.placeholder #000000 #cecece #3e3e3e #000000
+client.background #cecece
+
+hide_edge_borders both
+workspace_layout tabbed
+new_window 1pixel
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+#bindsym $mod+Shift+e exit
+
+bindsym $mod+Shift+q kill
+bindsym $mod+a focus parent
+bindsym $mod+d focus child
+bindsym $mod+Up focus up
+bindsym $mod+Down focus down
+bindsym $mod+Left focus left
+bindsym $mod+Right focus right
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Right move right
+
+bindsym $mod+e layout toggle split
+bindsym $mod+h split h
+bindsym $mod+v split v
+bindsym $mod+w layout tabbed
+bindsym $mod+s layout stacking
+
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+mode resize {
+	bindsym $mod+r mode default
+	bindsym Escape mode default
+
+	bindsym Up resize shrink height 10 px or 10 ppt
+	bindsym Down resize grow height 10 px or 10 ppt
+	bindsym Left resize shrink width 10 px or 10 ppt
+	bindsym Right resize grow width 10 px or 10 ppt
+}
+bindsym $mod+r mode resize
+floating_modifier $mod
+bindsym $mod+space focus mode_toggle
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+f fullscreen toggle
+
+bar {
+	status_command i3status -c ~/.i3/status
+	position top
+	colors {
+		statusline #cecece
+		background #3e3e3e
+		separator #cecece
+		focused_workspace #cecece #cecece #3e3e3e
+		active_workspace #cecece #cecece #3e3e3e
+		inactive_workspace #3e3e3e #3e3e3e #cecece
+		urgent_workspace #2d84df #2d84df #cecece
+	}
+}
+
+bindsym Print exec --no-startup-id xfce4-screenshooter -f
+bindsym Shift+Print exec --no-startup-id xfce4-screenshooter -w
+bindsym $mod+l exec --no-startup-id xlock -mode matrix
+bindsym XF86AudioPlay exec --no-startup-id vlc --global-key-play-pause
+bindsym XF86AudioStop exec --no-startup-id vlc --global-key-play-pause
+bindsym XF86AudioPrev exec --no-startup-id cmus-remote -r
+bindsym XF86AudioNext exec --no-startup-id cmus-remote -n
+bindsym XF86AudioLowerVolume exec amixer -c 0 set Master 2dB-  && killall -USR1 i3status
+bindsym XF86AudioRaiseVolume exec amixer -c 0 set Master 2dB+  && killall -USR1 i3status
+bindsym XF86AudioMute exec amixer -c 0 set Master toggle 
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
+bindsym XF86PowerOff exec --no-startup-id obshutdown -c ~/.obshutdown.rc
+bindsym $mod+m exec gmrun -g-
+bindsym $mod+b exec firefox
+bindsym $mod+Shift+t exec lxterminal
+bindsym $mod+Alt+Del lxtask 
+
+exec --no-startup-id nm-applet
+
+exec --no-startup-id pasystray
+
+exec --no-startup-id qxkb
+
+exec --no-startup-id steam
+
+exec --no-startup-id syndaemon -i 5 -d -K
