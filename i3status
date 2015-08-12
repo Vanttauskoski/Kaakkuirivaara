@@ -1,0 +1,44 @@
+general {
+	colors = true
+	color_good = "#3eff3e"
+	color_degraded = "#ffff3e"
+	color_bad = "#ff3e3e"
+	interval = 1
+}
+
+#order += "cpu_temperature 0"
+order += "ethernet eth0"
+order += "battery 1"
+order += "volume Master"
+order += "time"
+
+#cpu_temperature 0 {
+#	format = "T: %degrees °C"
+#       path = "/sys/devices/platform/coretemp.0/temp1_input"
+#}
+
+ethernet eth0 {
+	format_up = "LAN enabled"
+	format_down = "LAN disabled"
+}
+
+battery 1 {
+	format = "battery: %percentage (%status)"
+	format_down = "battery: missing battery"
+	status_bat = "discharging"
+	status_chr = "charging"
+	status_full = "full"
+	last_full_capacity = true
+	integer_battery_capacity = true
+	low_threshold = 10
+	threshold_type = "percentage"
+}
+
+volume Master {
+	format = "volume level: %volume"
+	format_muted = "volume level: %volume (m)"
+}
+
+time {
+	format = "date: %d.%m.%Y time: %H:%M:%S"
+}
