@@ -1,3 +1,12 @@
 udevil/udisks
 powertop
 network-manager
+v86d
+uvesafb
+cpufrequtils
+cups
+cmus
+wacom tablet modules
+s2ram
+zsh
+linux-ck #I really don`t know how useful this kernel :^)
